@@ -17,6 +17,7 @@ gulp.task('deps.js', () => {
     'node_modules/admin-lte/dist/js/app.min.js',
   ])
     .pipe(uglify())
+    .pipe(concat('deps.min.js'))
     .pipe(gulp.dest('public/assets/js'))
 })
 
