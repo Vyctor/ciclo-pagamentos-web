@@ -3,6 +3,7 @@ services:
   ciclo-pagamentos-web:
     build: .
     entrypoint: .docker/entrypoint.sh
+    container_name: "ciclo-pagamentos-web"
     networks:
       - node-network
     ports:
