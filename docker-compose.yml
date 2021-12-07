@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  ciclo-pagamentos-web:
+    build: .
+    entrypoint: .docker/entrypoint.sh
+    networks:
+      - node-network
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    tty: true
+
+networks:
+  node-network:
+    driver: bridge
