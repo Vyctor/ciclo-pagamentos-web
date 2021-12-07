@@ -1,15 +1,17 @@
-angular.module('cicloPagamentos').config([
-  '$stateProvider',
-  '$urlRouterProvider',
+angular.module("cicloPagamentos").config([
+  "$stateProvider",
+  "$urlRouterProvider",
   function ($stateProvider, $urlRouterProvider) {
-    $stateProvider.state('dashboard', {
-      url: '/dashboard',
-      templateUrl: 'dashboard/dashboard.html'
-    }).state('billingCycle', {
-      url: '/billingCycles',
-      templateUrl: 'billingCycle/tabs.html'
-    })
+    $stateProvider
+      .state("dashboard", {
+        url: "/dashboard",
+        templateUrl: "dashboard/dashboard.html",
+      })
+      .state("billingCycle", {
+        url: "/billingCycles",
+        templateUrl: "billingCycle/tabs.html",
+      });
 
-    $urlRouterProvider.otherwise('/dashboard')
-  }
-])
+    $urlRouterProvider.otherwise("/dashboard");
+  },
+]);

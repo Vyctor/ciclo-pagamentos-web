@@ -1,5 +1,1 @@
-angular.module('cicloPagamentos', [
-  'ui.router',
-  'ngAnimate',
-  'toastr'
-])
+angular.module("cicloPagamentos", ["ui.router", "ngAnimate", "toastr"]);
