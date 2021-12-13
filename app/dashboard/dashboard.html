@@ -1,24 +1,24 @@
 <content-header name="Dashboard" small="Versão 1.0"></content-header>
-<section class="content">
+<section class="content" ng-controller="DashboardController">
   <value-box
     grid="4"
     color-class="bg-green"
     icon-class="fa fa-bank"
-    value="R$ 1000,00"
+    value="R$ {{credit | number: 2}}"
     text="Total de Créditos"
   ></value-box>
   <value-box
     grid="4"
     color-class="bg-red"
     icon-class="fa fa-credit-card"
-    value="R$ 100,00"
+    value="R$ {{debit | number: 2}}"
     text="Total de Débitos"
   ></value-box>
   <value-box
     grid="4"
     color-class="bg-blue"
     icon-class="fa fa-money"
-    value="R$ 900,00"
+    value="R$ {{total | number: 2}}"
     text="Total Consolidado"
   ></value-box>
 </section>
