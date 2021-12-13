@@ -1,23 +1,26 @@
-angular
-  .module("cicloPagamentos")
-  .controller("DashboardController", ["$scope", "$http", DashboardController]);
+(function () {
+  angular
+    .module("cicloPagamentos")
+    .controller("DashboardController", ["$http", DashboardController]);
 
-function DashboardController($scope, $http) {
-  $scope.getSummary = function () {
-    const url = "http://localhost:3333/billing-cycles";
-    $http
-      .get(url)
-      .then((response) => {
-        $scope.credit = response.credit;
-        $scope.debit = response.debit;
-        $scope.total = $scope.credit - $scope.debit;
-      })
-      .catch((error) => {
-        $scope.credit = 0;
-        $scope.debit = 0;
-        $scope.total = 0;
-      });
-  };
+  function DashboardController($http) {
+    const vm = this;
+    vm.getSummary = function () {
+      const url = "http://localhost:3333/billing-cycles";
+      $http
+        .get(url)
+        .then((response) => {
+          vm.credit = response.credit;
+          vm.debit = response.debit;
+          vm.total = vm.credit - vm.debit;
+        })
+        .catch((error) => {
+          vm.credit = 0;
+          vm.debit = 0;
+          vm.total = 0;
+        });
+    };
 
-  $scope.getSummary();
-}
+    vm.getSummary();
+  }
+})();

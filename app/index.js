@@ -1,1 +1,3 @@
-angular.module("cicloPagamentos", ["ui.router", "ngAnimate", "toastr"]);
+(function () {
+  angular.module("cicloPagamentos", ["ui.router", "ngAnimate", "toastr"]);
+})();

@@ -1,20 +1,21 @@
-angular.module("cicloPagamentos").component("valueBox", {
-  bindings: {
-    grid: "@",
-    colorClass: "@",
-    value: "@",
-    text: "@",
-    iconClass: "@",
-  },
-  controller: [
-    "gridSystem",
-    function (gridSystem) {
-      this.$onInit = function () {
-        this.gridClasses = gridSystem.toCssClasses(this.grid);
-      };
+(function () {
+  angular.module("cicloPagamentos").component("valueBox", {
+    bindings: {
+      grid: "@",
+      colorClass: "@",
+      value: "@",
+      text: "@",
+      iconClass: "@",
     },
-  ],
-  template: `
+    controller: [
+      "gridSystem",
+      function (gridSystem) {
+        this.$onInit = function () {
+          this.gridClasses = gridSystem.toCssClasses(this.grid);
+        };
+      },
+    ],
+    template: `
       <div class="{{$ctrl.gridClasses}}">
         <div class="small-box {{$ctrl.colorClass}}">
           <div class="inner">
@@ -27,4 +28,5 @@ angular.module("cicloPagamentos").component("valueBox", {
         </div>
       </div>
   `,
-});
+  });
+})();
