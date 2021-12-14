@@ -9,14 +9,20 @@
 
   function BillingCycleController($http, messageFactory) {
     const vm = this;
+    const url = "http://localhost:3333/billing-cycles";
+
+    vm.refresh = function () {
+      $http.get(url).then((response) => {
+        vm.billingCycle = {};
+        vm.billingCycles = response;
+      });
+    };
 
     vm.create = function () {
-      const url = "http://localhost:3333/billing-cycles";
-
       $http
         .post(url, vm.billingCycle)
         .then((response) => {
-          vm.billingCycle = {};
+          vm.refresh();
           messageFactory.addSuccess("Operação realizada com sucesso!");
         })
         .catch((error) => {
@@ -26,5 +32,7 @@
           );
         });
     };
+
+    vm.refresh();
   }
 })();
