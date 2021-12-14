@@ -1,9 +1,13 @@
 (function () {
   angular
     .module("cicloPagamentos")
-    .controller("BillingCycleController", ["$http", BillingCycleController]);
+    .controller("BillingCycleController", [
+      "$http",
+      "messageFactory",
+      BillingCycleController,
+    ]);
 
-  function BillingCycleController($http) {
+  function BillingCycleController($http, messageFactory) {
     const vm = this;
 
     vm.create = function () {
@@ -13,9 +17,13 @@
         .post(url, vm.billingCycle)
         .then((response) => {
           vm.billingCycle = {};
+          messageFactory.addSuccess("Operação realizada com sucesso!");
         })
         .catch((error) => {
-          vm.error = error;
+          console.log("error", error);
+          messageFactory.addError(
+            error.message || "Tente novamente em alguns instantes"
+          );
         });
     };
   }
