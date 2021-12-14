@@ -10,7 +10,6 @@
       $http
         .get(url)
         .then((response) => {
-          console.log(response);
           vm.credit = response.data.credits;
           vm.debt = response.data.debts;
           vm.total = response.data.total;

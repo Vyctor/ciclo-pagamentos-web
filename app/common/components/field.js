@@ -6,13 +6,13 @@
       grid: "@",
       placeholder: "@",
       type: "@",
+      model: "=",
     },
     controller: [
       "gridSystem",
       function (gridSystem) {
         this.$onInit = function () {
           this.gridClasses = gridSystem.toCssClasses(this.grid);
-          console.log(this.gridClasses);
         };
       },
     ],
@@ -25,6 +25,7 @@
             id="{{ $ctrl.id }}"
             class="form-control"
             placeholder="{{ $ctrl.placeholder }}"
+            ng-model="$ctrl.model"
           />
         </div>
       </div>
