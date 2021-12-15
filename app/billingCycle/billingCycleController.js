@@ -4,17 +4,25 @@
     .controller("BillingCycleController", [
       "$http",
       "messageFactory",
+      "tabsFactory",
       BillingCycleController,
     ]);
 
-  function BillingCycleController($http, messageFactory) {
+  function BillingCycleController($http, messageFactory, tabsFactory) {
     const vm = this;
     const url = "http://localhost:3333/billing-cycles";
 
+    vm.onInit = function () {
+      vm.refresh();
+      console.log(vm);
+    };
+
     vm.refresh = function () {
       $http.get(url).then((response) => {
+        console.log("response: ", response);
         vm.billingCycle = {};
-        vm.billingCycles = response;
+        vm.billingCycles = response.data;
+        tabsFactory.show(vm, { tabList: true, tabCreate: true });
       });
     };
 
@@ -33,6 +41,6 @@
         });
     };
 
-    vm.refresh();
+    vm.onInit();
   }
 })();

@@ -29,11 +29,19 @@
     </field>
   </div>
   <div class="box-footer">
-    <button class="btn btn-primary" ng-click="billingCycleController.create()">
+    <button
+      class="btn btn-primary"
+      ng-click="billingCycleController.create()"
+      ng-if="billingCycleController.tabCreate"
+    >
       Incluir
     </button>
-    <button class="btn btn-info">Alterar</button>
-    <button class="btn btn-danger">Excluir</button>
+    <button class="btn btn-info" ng-if="billingCycleController.tabUpdate">
+      Alterar
+    </button>
+    <button class="btn btn-danger" ng-if="billingCycleController.tabDelete">
+      Excluir
+    </button>
     <button class="btn btn-default">Cancelar</button>
   </div>
 </div>
