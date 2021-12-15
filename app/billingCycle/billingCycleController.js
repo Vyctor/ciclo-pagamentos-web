@@ -14,12 +14,10 @@
 
     vm.onInit = function () {
       vm.refresh();
-      console.log(vm);
     };
 
     vm.refresh = function () {
       $http.get(url).then((response) => {
-        console.log("response: ", response);
         vm.billingCycle = {};
         vm.billingCycles = response.data;
         tabsFactory.show(vm, { tabList: true, tabCreate: true });
@@ -34,11 +32,20 @@
           messageFactory.addSuccess("Operação realizada com sucesso!");
         })
         .catch((error) => {
-          console.log("error", error);
           messageFactory.addError(
             error.message || "Tente novamente em alguns instantes"
           );
         });
+    };
+
+    vm.showTabUpdate = function (billingCycle) {
+      vm.billingCycle = billingCycle;
+      tabsFactory.show(vm, { tabUpdate: true });
+    };
+
+    vm.showTabDelete = function (billingCycle) {
+      vm.billingCycle = billingCycle;
+      tabsFactory.show(vm, { tabDelete: true });
     };
 
     vm.onInit();
