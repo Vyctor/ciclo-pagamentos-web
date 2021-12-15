@@ -7,6 +7,7 @@
       placeholder="Informe o nome"
       type="text"
       model="billingCycleController.billingCycle.name"
+      readonly="billingCycleController.tabDelete"
     >
     </field>
     <field
@@ -16,6 +17,7 @@
       placeholder="Informe o mês"
       type="number"
       model="billingCycleController.billingCycle.month"
+      readonly="billingCycleController.tabDelete"
     >
     </field>
     <field
@@ -25,6 +27,7 @@
       placeholder="Informe o ano"
       type="number"
       model="billingCycleController.billingCycle.year"
+      readonly="billingCycleController.tabDelete"
     >
     </field>
   </div>
@@ -39,7 +42,11 @@
     <button class="btn btn-info" ng-if="billingCycleController.tabUpdate">
       Alterar
     </button>
-    <button class="btn btn-danger" ng-if="billingCycleController.tabDelete">
+    <button
+      ng-click="billingCycleController.delete()"
+      class="btn btn-danger"
+      ng-if="billingCycleController.tabDelete"
+    >
       Excluir
     </button>
     <button class="btn btn-default" ng-click="billingCycleController.refresh()">

@@ -48,6 +48,20 @@
       tabsFactory.show(vm, { tabDelete: true });
     };
 
+    vm.delete = function () {
+      const deleteUrl = `${vm.url}/${vm.billingCycle.id}`;
+
+      $http
+        .delete(url, vm.billingCycle)
+        .then((response) => {
+          vm.refresh();
+          messageFactory.addSuccess("Operação realizada com sucesso!");
+        })
+        .catch((error) => {
+          messageFactory.addError("Tente novamente em alguns instantes.");
+        });
+    };
+
     vm.onInit();
   }
 })();
