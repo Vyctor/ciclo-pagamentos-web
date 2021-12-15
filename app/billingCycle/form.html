@@ -39,7 +39,11 @@
     >
       Incluir
     </button>
-    <button class="btn btn-info" ng-if="billingCycleController.tabUpdate">
+    <button
+      class="btn btn-info"
+      ng-if="billingCycleController.tabUpdate"
+      ng-click="billingCycleController.update()"
+    >
       Alterar
     </button>
     <button
