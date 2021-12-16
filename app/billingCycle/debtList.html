@@ -37,18 +37,21 @@
         </td>
         <td class="table-actions">
           <button
+            ng-click="billingCycleController.addDebt($index)"
             class="btn btn-success"
             ng-class="{disabled: billingCycleController.tabDelete}"
           >
             <i class="fa fa-plus"></i>
           </button>
           <button
+            ng-click="billingCycleController.cloneDebt($index, debt)"
             class="btn btn-warning"
             ng-class="{disabled: billingCycleController.tabDelete}"
           >
             <i class="fa fa-clone"></i>
           </button>
           <button
+            ng-click="billingCycleController.deleteDebt($index, debt)"
             class="btn btn-danger"
             ng-class="{disabled: billingCycleController.tabDelete}"
           >
