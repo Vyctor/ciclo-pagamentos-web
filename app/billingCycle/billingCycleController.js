@@ -14,6 +14,7 @@
 
     vm.onInit = function () {
       vm.refresh();
+      console.log(vm);
     };
 
     vm.refresh = function () {
@@ -22,6 +23,7 @@
         vm.billingCycles = response.data;
         tabsFactory.show(vm, { tabList: true, tabCreate: true });
       });
+      vm.calculateValues();
     };
 
     vm.create = function () {
@@ -66,7 +68,7 @@
       const deleteUrl = `${url}/${vm.billingCycle.id}`;
 
       $http
-        .delete(url, vm.billingCycle)
+        .delete(deleteUrl, vm.billingCycle)
         .then((response) => {
           vm.refresh();
           messageFactory.addSuccess("Operação realizada com sucesso!");
@@ -77,32 +79,55 @@
     };
 
     vm.addCredit = function (index) {
+      console.log(index);
       vm.billingCycle.credits.splice(index + 1, 0, {});
     };
 
     vm.cloneCredit = function (index, { name, value }) {
       vm.billingCycle.credits.splice(index + 1, 0, { name, value });
+      vm.calculateValues();
     };
 
     vm.deleteCredit = function (index) {
       if (vm.billingCycle.credits.length > 1) {
         vm.billingCycle.credits.splice(index, 1);
+        vm.calculateValues();
       }
     };
 
     vm.addDebt = function (index) {
+      console.log("executei");
       vm.billingCycle.debts.splice(index + 1, 0, {});
     };
 
     vm.cloneDebt = function (index, { name, value, status }) {
       vm.billingCycle.debts.splice((index + 1, 0, { name, value, status }));
+      vm.calculateValues();
     };
 
     vm.deleteDebt = function (index) {
       if (vm.billingCycle.debts.length > 1) {
         vm.billingCycle.debts.splice(index, 1);
+        vm.calculateValues();
       }
     };
+
+    vm.calculateValues = function () {
+      vm.credit = 0;
+      vm.debt = 0;
+
+      if (vm.billingCycle) {
+        vm.billingCycle.credits.forEach((value) => {
+          vm.credit += !value || isNaN(value) ? 0 : parseFloat(value);
+        });
+
+        vm.billingCycle.debts.forEach((value) => {
+          vm.debt += !value || isNaN(value) ? 0 : parseFloat(value);
+        });
+      }
+    };
+
+    vm.total = vm.credit - vm.debt || 0;
 
     vm.onInit();
   }
